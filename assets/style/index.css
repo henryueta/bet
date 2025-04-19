@@ -1,0 +1,124 @@
+
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.screenSection{
+    align-self: center;
+    width: 50%;
+}
+
+.gameSection{
+    height: 100%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    justify-content: start;
+    flex-direction: column;
+}
+
+.ownerSection{
+    height: 50%;
+}
+
+.roundSection{
+    height: 50%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    border: 2px solid red;
+}
+
+.machineContainer{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: start;
+    justify-content: space-evenly;
+    
+}
+
+.machineContainer>*{
+    border: 2px solid blue;
+}
+
+.roundSection>*{
+    border: 2px solid red;
+}
+
+.roundSection .rollContainer{
+    width: 80%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    justify-content: space-evenly;
+    padding: 1rem;
+}
+
+.roundSection .rollContainer>div {
+    border: 2px solid red;
+    height: 170px;
+    width: 180px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 3rem;
+    font-weight: bold;
+}
+
+.roundSection .leverContainer{
+    width: 50px;
+    height:200px;
+}
+
+.roundSection .leverContainer>div{
+    background-color: red;
+    width: 100%;
+    height: 20%;
+    position: relative;
+}
+
+.roundSection .rollContainer>div>img{
+    height: 90%;
+    width: 90%;
+}
+
+@keyframes startRound_animation {
+    0%{
+        top: 100px;
+    }
+    50%{
+        top: 160px;
+    }
+    100%{
+        top: 0px;
+    }
+}
+
+ .startRound{
+    background-color: white;
+    animation: 0.5s ease-in-out startRound_animation;
+}
+
+@media (max-width:1024px) {
+    .screenSection{
+        width: 100%;
+    }
+
+    .roundSection .rollContainer>div {
+        height: 200px;
+        width: 220px;
+    }
+
+}
