@@ -1,4 +1,5 @@
 import { animation } from "./animation.js";
+import { rollGroup } from "./roll.js";
 import { round } from "./round.js";
 
 
@@ -6,6 +7,12 @@ const lever = {
     leverContainer:document.querySelector(".leverContainer>div"),
     start_y:0,
     top_y:0,
+    onTurnOn(){
+      return  this.leverContainer.style.display = "flex"
+    },
+    onTurnOff(){
+      return  this.leverContainer.style.display = "none"
+    },
     onHandleStart(onAction){
         !round.hasStarted
             && typeof onAction === 'function' 
@@ -17,7 +24,6 @@ const lever = {
         start(){
             return lever.leverContainer.addEventListener('touchstart',(e)=>{
                 lever.onHandleStart(()=>{
-                    console.log("nao comecou")
                     const touch = e.touches[0];
                     lever.start_y = touch.clientY;
                     lever.top_y = parseInt(lever.leverContainer.style.top || 0)
@@ -56,10 +62,9 @@ const lever = {
         end(){
            return lever.leverContainer.addEventListener('touchend',(e)=>{
             lever.onHandleStart(()=>{
+                rollGroup.rollContainer.style.display = "flex";
                 round.hasStarted = true;
-                console.log("round"+round.hasStarted)
                 round.onStart()
-                console.log(round.hasStarted)
                 setTimeout(()=>{
                     lever.leverContainer.style.top = 0;
                 },500)

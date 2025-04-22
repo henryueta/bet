@@ -1,7 +1,8 @@
 
 
 const rollGroup = {
-    rollContainer:document.querySelectorAll('.rollContainer>div'),
+    rollContainer:document.querySelector(".rollContainer"),
+    rolls:document.querySelectorAll('.rollContainer>div'),
     rollSymbols: document.querySelectorAll('.rollContainer>div>img'),
     group:[
         {
@@ -21,14 +22,12 @@ const rollGroup = {
     setItemValue(id,number){
         typeof number === 'number'
         ? this.group = this.group.map((item,index)=>{
-            console.log(index === id)
             return index === id ? {
                 timer:1500,
                 value:number
             } : item 
         })
         : null
-        console.log(this.group)
     },
     setGroupValues(array){
         typeof array === 'object'

@@ -12,7 +12,7 @@ const round = {
         randomNumber.onCreateNumber(2500,3500),
         randomNumber.onCreateNumber(3500,5000)
     ])
-    rollGroup.rollContainer.forEach((item,index)=>{
+    rollGroup.rolls.forEach((item,index)=>{
         let current_randomNumber = 0;
         animation.onCreate(()=>{
             current_randomNumber = randomNumber.onCreateNumber(1,10);
@@ -20,11 +20,19 @@ const round = {
         },rollGroup.group[index].timer,()=>{
             rollGroup.setItemValue(index,current_randomNumber)
             audio.play('cashFinished_audio')
-            
+            let default_rollValues = rollGroup.group.filter((item,index)=>{
+               return item.value === 0
+            })
+            if(!default_rollValues.length){
+                this.onEnd();
+            }
         })
     })
     },
     onEnd(){
+        // let teste = rollGroup.group.filter((item,index)=>item.value === rollGroup.group[0].value)
+        // console.log(teste)
+        rollGroup.setGroupValues([0,0,0])
         round.hasStarted = false
     }
 }

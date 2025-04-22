@@ -1,3 +1,8 @@
+@font-face {
+    font-family: 'pixel_font';
+    src: url("../src/fonts/Minecraft.ttf");
+}
+
 
 *{
     padding: 0;
@@ -13,7 +18,7 @@ body{
 
 .screenSection{
     align-self: center;
-    width: 50%;
+    width: 100%;
 }
 
 .gameSection{
@@ -26,18 +31,78 @@ body{
     flex-direction: column;
 }
 
-.ownerSection{
-    height: 50%;
-}
-
-.roundSection{
+.screenGameSection{
     height: 50%;
     width: 100%;
     display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(87, 117, 63);
+    background-color: white;
+    font-family: pixel_font;
+    letter-spacing: 0.3rem;
+}
+
+.screenGameContainer{
+    border: 1px solid black;
+    height: 90%;
+    width: 90%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: black;
+    color: greenyellow;
+}
+
+.screenGameContainer::after{
+    content:"";
+    border: 2px solid greenyellow;
+    height: 40%;
+    width: 80%;
+    position: absolute;
+    top: 25%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.moneyContainer{
+    position: absolute;
+    top: 6.5%;
+    left: 13%;
+    font-size: 2.5rem;
+}
+
+.menuContainer{
+    display: flex;
     align-items: center;
     justify-content: center;
-    flex-direction: column;
-    border: 2px solid red;
+    border: 2px solid greenyellow;
+    width: 80%;
+    height: 70%;
+    padding: 5rem;
+}
+
+.menuContainer>ul{
+    font-size: 3rem;
+}
+
+.menuContainer>ul>li{
+    margin-top: 4rem;
+    list-style: none;
+}
+
+/* .menuContainer>ul>li:last-child{
+    list-style: square;
+} */
+
+.userControllerSection{
+    height: 50vh;
+    width: 100vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    justify-content: space-evenly;
+    flex-direction: row;
 }
 
 .machineContainer{
@@ -46,28 +111,56 @@ body{
     align-items: center;
     justify-content: start;
     justify-content: space-evenly;
-    
+    width: 90%;
+    height: 70%;
+    --buttonBackground:linear-gradient(180deg, rgb(7, 7, 7) 0%, rgb(39, 38, 38) 80%, rgb(4, 4, 4) 100%)
 }
 
 .machineContainer>*{
-    border: 2px solid blue;
+    border: 2px solid black;
 }
 
-.roundSection>*{
-    border: 2px solid red;
+.machineContainer>button{
+    border-radius: 0.5rem;
 }
 
-.roundSection .rollContainer{
+.keyboardContainer{
+    border: 2px solid black;
+    width: 60%;
+    height: 85%;
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    grid-template-rows:repeat(3,1fr) 1fr;
+}
+
+.keyboardContainer>button{
+    font-size: 3rem;
+    background:var(--buttonBackground);
+    color: white;
+}   
+
+.keyboardContainer>button:nth-child(10){
+    grid-column: 1/2;
+}
+.keyboardContainer>button:nth-child(11){
+    grid-column: 2/4;
+}
+
+.userControllerSection>*{
+    border: 2px solid black;
+}
+
+ .rollContainer{
     width: 80%;
-    display: flex;
+    display: none;
     align-items: center;
     justify-content: center;
     justify-content: space-evenly;
     padding: 1rem;
 }
 
-.roundSection .rollContainer>div {
-    border: 2px solid red;
+ .rollContainer>div {
+    border: 2px solid black;
     height: 170px;
     width: 180px;
     display: flex;
@@ -77,38 +170,54 @@ body{
     font-weight: bold;
 }
 
-.roundSection .leverContainer{
+.userControllerSection .leverContainer{
     width: 50px;
     height:200px;
 }
 
-.roundSection .leverContainer>div{
-    background-color: red;
+.userControllerSection .leverContainer>div{
     width: 100%;
     height: 20%;
     position: relative;
+    display: none;
 }
 
-.roundSection .rollContainer>div>img{
+.userControllerSection .leverContainer>div::before{
+    display: flex;
+    content:"";
+    background: radial-gradient(circle,rgb(40, 39, 39) 0%, rgba(0, 0, 0, 1) 50%, rgb(80, 78, 78) 100%);
+    width: 70px;
+    height: 70px;
+    border-radius: 100%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.userControllerSection .rollContainer>div>img{
     height: 90%;
     width: 90%;
 }
 
-@keyframes startRound_animation {
-    0%{
-        top: 100px;
-    }
-    50%{
-        top: 160px;
-    }
-    100%{
-        top: 0px;
-    }
+.controllersContainer{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    width: 15%;
+    gap: 0.5rem;
+    padding: 0.3rem;
+    height: 60%;
 }
 
- .startRound{
-    background-color: white;
-    animation: 0.5s ease-in-out startRound_animation;
+.controllersContainer>button{
+    width: 85%;
+    height: 28%;
+    font-size: 2.5rem;
+    color: white;
+    background:var(--buttonBackground);
+    border-radius: 100%;
 }
 
 @media (max-width:1024px) {
@@ -116,7 +225,7 @@ body{
         width: 100%;
     }
 
-    .roundSection .rollContainer>div {
+    .userControllerSection .rollContainer>div {
         height: 200px;
         width: 220px;
     }
